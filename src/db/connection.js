@@ -1,13 +1,13 @@
 require("dotenv").config()
 const { MongoClient } = require("mongodb")
 
-const connection = async (crudFunc, movieObj) => {
+const connection = async (crudFunc, movieObj, newObj) => {
     try {
         const client = new MongoClient(process.env.MONGO_URI)
         await client.connect()
         const db = client.db("FavMovies")
         const collection = db.collection("Movies")
-        await crudFunc(movieObj, collection)
+        await crudFunc(movieObj, newObj, collection)
         client.close()
     } catch (error) {
         console.log(error)
