@@ -20,3 +20,17 @@ exports.editMovie = async (movieObj, newObj, collection) => {
         console.log(error)
     }
 }
+
+exports.deleteMovie = async (movieObj, collection) => {
+    try{
+        await collection.deleteOne(movieObj)
+        if (movieObj.actor){
+            console.log(`Successfully deleted ${movieObj.actor}`)
+        }
+        else if (movieObj.title){
+            console.log(`Successfully deleted ${movieObj.title}`)
+        }
+    }catch (error) {
+        console.log(error)
+    }
+}
