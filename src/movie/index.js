@@ -34,3 +34,14 @@ exports.deleteMovie = async (movieObj, collection) => {
         console.log(error)
     }
 }
+
+exports.listMovie = async (collection) => {
+    try{
+        const fullList = await collection.find({})
+        await fullList.forEach(element => {
+            console.log(`title:${element.title} actor:${element.actor}`)
+        });
+    }catch (error) {
+        console.log(error)
+    }
+}

@@ -1,6 +1,6 @@
 const yargs = require("yargs")
-const { connection, connection2 } = require("./db/connection")
-const { addMovie, editMovie, deleteMovie } = require("./movie")
+const { connection, connection2, connection3 } = require("./db/connection")
+const { addMovie, editMovie, deleteMovie, listMovie } = require("./movie")
 
 const app = async (args) => {
     try{
@@ -29,6 +29,9 @@ const app = async (args) => {
                 const movieObj = { actor: args.actor }
                 await connection(deleteMovie, movieObj)
             }
+        }
+        else if (args.list){
+            await connection3(listMovie)
         }
     }catch (error) {
         console.log((error))
